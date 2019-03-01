@@ -1,8 +1,8 @@
-@(itemForm: Form[models.ItemOnSale])
+@(itemForm: Form[models.ItemOnSale], user: models.users.User)
 
 @import helper._
 
-@main("Add Item"){
+@main("Add Item", user){
     <p class="lead">Add a new item</p>
 
     <!-- Use a views.html.helpers package method to create the form (instead of html)-->

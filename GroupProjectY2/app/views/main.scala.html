@@ -1,4 +1,4 @@
-@(pagename:String)(content:Html)
+@(pagename: String, user: models.users.User)(content: Html)
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,7 +26,14 @@
             <li @if(pagename == "Home") {class="active"}><a href="@routes.HomeController.index()">Home</a></li>
 		    <li @if(pagename == "Sale") {class="active"}><a href="@routes.HomeController.onsale()">Sale</a></li>
 		    <li @if(pagename == "About") {class="active"}><a href="@routes.HomeController.about()">About us</a></li>
-			<li @if(pagename == "Log In") {class="active"}><a href="@routes.LoginController.login()">Log Out</a></li>
+			<li @if(pagename == "Log In"){class="active"}>
+				@if(user != null){
+					<a href="@routes.LoginController.logout()">Log Out</a>>
+				} else {
+					<a href="@routes.LoginController.login()">Log In</a>
+				}
+			</li>
+			
 		</ul>
 	    </div>
 	</nav>

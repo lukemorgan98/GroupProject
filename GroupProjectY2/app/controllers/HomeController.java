@@ -14,6 +14,8 @@ import javax.inject.Inject;
 
 import models.*;
 
+import models.users.*;
+
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
@@ -35,28 +37,32 @@ public class HomeController extends Controller {
     public Result onsale(Long cat) {
         List<ItemOnSale> itemList = null;
         List<Category> categoryList = Category.findAll();
-
-        if(cat ==0){
+  
+        if(cat == 0){
             itemList = ItemOnSale.findAll();
         }else {
             itemList = Category.find.ref(cat).getItems();
         }
-        return ok(onsale.render(itemList, categoryList));
-
+        return ok(onsale.render(itemList, categoryList, User.getUserById(session().get("email"))));
      }
 
-    public Result index() {
-        return ok(index.render());
-    }
+     public Result index(){
 
+        return ok(index.render(User.getUserById(session().get("email"))));
+
+
+    }
     public Result about() {
-        return ok(about.render());
-    }
-
+        return ok(about.render(User.getUserById(session().get("email"))));
+       
+      }
+    @Security.Authenticated(Secured.class)
     public Result addItem() {
         Form<ItemOnSale> itemForm = formFactory.form(ItemOnSale.class);
-        return ok(addItem.render(itemForm));
+    return ok(addItem.render(itemForm, User.getUserById(session().get("email"))));
 }
+@Security.Authenticated(Secured.class)
+@Transactional
 public Result addItemSubmit() {
     // We use the method bindFromRequest() to populate our Form<ItemOnSale> object with the
     // data that the user submitted. Thanks to Play Framework, we do not need to do the messy
@@ -68,7 +74,7 @@ public Result addItemSubmit() {
         // Framework to send an error response to the user and display the additem page again. 
         // As we are passing in newItemForm, the form will be populated with the data that the 
         // user has already entered, saving them from having to enter it all over again.
-        return badRequest(addItem.render(newItemForm));
+        return badRequest(addItem.render(newItemForm, User.getUserById(session().get("email"))));
     } else {
         // If no errors are found in the form data, we extract the data from the form.
         // Form objects have handy utility methods, such as the get() method we are using 
@@ -94,7 +100,8 @@ public Result addItemSubmit() {
         return redirect(controllers.routes.HomeController.onsale(0));
     }
 }
-
+@Security.Authenticated(Secured.class)
+@Transactional
 public Result deleteItem(Long id) {
 
     // The following line of code finds the item object by id, then calls the delete() method
@@ -106,7 +113,7 @@ public Result deleteItem(Long id) {
     // And redirect to the onsale page
     return redirect(controllers.routes.HomeController.onsale(0));
 }
-
+@Security.Authenticated(Secured.class)
 public Result updateItem(Long id) {
     ItemOnSale i;
     Form<ItemOnSale> itemForm;
@@ -122,7 +129,7 @@ public Result updateItem(Long id) {
     }
 
     // Display the "add item" page, to allow the user to update the item
-    return ok(addItem.render(itemForm));
+    return ok(addItem.render(itemForm, User.getUserById(session().get("email"))));
 }
 
 }
