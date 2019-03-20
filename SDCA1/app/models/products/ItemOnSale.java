@@ -1,4 +1,4 @@
-package models;
+package models.products;
 
 import java.util.*;
 import javax.persistence.*;
@@ -21,8 +21,8 @@ public class ItemOnSale extends Model {
     @Constraints.Required
     private double price;
 
-    @ManyToOne
-    private Category category;
+    @ManyToMany(cascade = CascadeType.All, mappedBy = "items")
+    private List<Category> categories;
 
     // Default Constructor
     public ItemOnSale() {
@@ -76,9 +76,9 @@ public static final List<ItemOnSale> findAll() {
 }
 
 public Category getCategory() {
-    return category;
+    return categories;
 }
-public void setCategory(Category category) {
-    this.category = category;
+public void setCategory(Category categories) {
+    this.categories = categories;
 }
 }

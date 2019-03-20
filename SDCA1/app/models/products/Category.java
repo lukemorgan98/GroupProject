@@ -1,4 +1,4 @@
-package models;
+package models.products;
 
 import java.util.*;
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Category extends Model {
    private String name;
 
    // Category contains many products
-   @OneToMany
+   @ManyToMany(cascade = CascadeType.ALL)
    private List<ItemOnSale> items;
 
    // Default constructor

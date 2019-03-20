@@ -25,7 +25,13 @@
 		<ul class="nav navbar-nav">
             <li @if(pagename == "Home") {class="active"}><a href="@routes.HomeController.index()">Home</a></li>
 		    <li @if(pagename == "Sale") {class="active"}><a href="@routes.HomeController.onsale()">Sale</a></li>
-		    <li @if(pagename == "About") {class="active"}><a href="@routes.HomeController.about()">About us</a></li>
+			<li @if(pagename == "About") {class="active"}><a href="@routes.HomeController.about()">About us</a></li>
+			<li @if(pagename == "Register") {class="active"}><a href="@routes.LoginController.registerUser()">Register user</a></li>
+			
+			@if((user != null) && ("admin".equals(user.getRole()))) {
+				<li @if(pagename == "Administrators") {class="active"}><a href="@routes.HomeController.usersAdmin()">View Admin</a></li>
+			}
+			
 			<li @if(pagename == "Log In"){class="active"}>
 				@if(user != null){
 					<a href="@routes.LoginController.logout()">Log Out</a>>

@@ -7,12 +7,24 @@ import play.data.format.*;
 import play.data.validation.*;
 
 @Entity
+
+@Table(name = "user")
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
+@DiscriminatorColumn(name = "type")
+
+@DiscriminatorValue("u")
+
 public class User extends Model {
 
    @Id
    private String email;
 
-   @Constraints.Required
+    @Constraints.Required
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
+
    private String role;
    
    @Constraints.Required
@@ -63,11 +75,18 @@ public class User extends Model {
             this.password = password;
             }
 
+        public Date getDateOfBirth(){
+            return dateOfBirth;
+        }
+        public String getDateOfBirthString(){
+            return String.format("%1$td %1$tB %1$tY", dateOfBirth);
+        }
+        public void setDateOfBirth(Date dateOfBirth){
+            this.dateOfBirth = dateOfBirth;
+        }
+
     public static final Finder<Long, User> find = new Finder<>(User.class);
 			    
-    public static final List<User> findAll() {
-               return User.find.all();
-            }  
     public static User authenticate(String email, String password) {
                 return find.query().where().eq("email", email).eq("password", password).findUnique();
              } 
@@ -79,9 +98,6 @@ public class User extends Model {
             return find.query().where().eq("email", id).findUnique();
         }
     }
-
-
-
 
 }
 

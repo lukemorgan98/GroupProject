@@ -29,7 +29,6 @@
         <tr>
             <th>ID</th>
             <th>Name Picture</th>
-            <th>Category</th>
             <th>Description</th>
             <th>Stock</th>
             <th>Price</th>
@@ -43,10 +42,11 @@
                <tr>
                   <td>@i.getId</td>
                   <td>@i.getName</td>
-                  <td>@i.getCategory.getName</td>
                   <td>@i.getDescription</td>
                   <td>@i.getStock</td>
                   <td>&euro; @("%.2f".format(i.getPrice))</td>
+
+                  @if((user != null) && ("admin".equals(user.getRole()))){
                   <!-- Update button -->
 						<td>
 							<a href="@routes.HomeController.updateItem(i.getId)" class="button-xs btn-danger">
@@ -59,17 +59,19 @@
 								<span class="glyphicon glyphicon-trash"></span>
 							</a>
                 </td>
+            }
                </tr>
             }
         
         </tbody>
     </table>
-
+    @if((user != null) && ("admin".equals(user.getRole()))){
     <p>
         <a href="@routes.HomeController.addItem()">
             <button class="btn btn-primary">Add an item</button>
         </a>
 </p>
+    }
 </div>
  }
     }
