@@ -21,10 +21,22 @@
              and this is provided by the method Category.options(), which we added to the Category
              class in the previous step. -->
             @inputText(itemForm("name"), '_label -> "Name", 'class -> "form-control")
+           
+            <p><strong>Categories</strong></p>
+            @for((value, name) <- products.Category.options){
+                <input type="checkbox" name="catSelect[]" value="@value"
+                    @if(itemForm("id").getValue.isPresent && itemForm("id").getValue.get != ""){
+                        @if(products.Category.inCategory(value.toLong, itemForm("id").getValue.get.toLong)){
+                            checked
+                        }
+                    }
+                    /> @name </br>
+            }
+           <p></p>
+
             @select(
                 itemForm("category.id"),
                 options(products.Category.options),
-                options(Category.options),
                 '_label -> "Category", '_default -> "-- Choose a category --", 
                 '_showConstraints -> false, 'class -> "form-control"
             )

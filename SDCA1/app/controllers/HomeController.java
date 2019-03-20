@@ -81,6 +81,12 @@ public Result addItemSubmit() {
         // here to extract the data into an ItemOnSale object. This is possible because
         // we defined the form in terms of the model class ItemOnSale.
         ItemOnSale newItem = newItemForm.get();
+
+        List<Category> newCats = new ArrayList<Category>();
+        for(Long cat : newItem.getCatSelect()){
+            newCats.add(Category.find.byId(cat));
+        }
+        newItem.setCategories (newCats);
         // Now we call the ORM method save() on the model object, to have it saved in the
         // database as a line in the table item_on_sale.
         

@@ -2,7 +2,6 @@ package models.products;
 
 import java.util.*;
 import javax.persistence.*;
-
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
@@ -20,7 +19,7 @@ public class Category extends Model {
    private String name;
 
    // Category contains many products
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany(cascade=CascadeType.ALL)
    private List<ItemOnSale> items;
 
    // Default constructor
@@ -72,4 +71,11 @@ public static Map<String,String> options() {
     }
     return options;
  }
+
+public static boolean inCategory(Long category, Long item){
+    return find.query().where().eq("items.id", item)
+                       .eq("id", category)
+                       .findList().size() > 0;
+}
+
 }

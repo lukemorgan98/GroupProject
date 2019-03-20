@@ -21,8 +21,10 @@ public class ItemOnSale extends Model {
     @Constraints.Required
     private double price;
 
-    @ManyToMany(cascade = CascadeType.All, mappedBy = "items")
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "items")
     private List<Category> categories;
+
+    private List<Long> catSelect = new ArrayList<Long>();
 
     // Default Constructor
     public ItemOnSale() {
@@ -75,10 +77,18 @@ public static final List<ItemOnSale> findAll() {
         this.price = price;
 }
 
-public Category getCategory() {
+public List<Category> getCategories() {
     return categories;
 }
-public void setCategory(Category categories) {
+public void setCategories(List <Category> categories) {
     this.categories = categories;
 }
+
+public List<Long> getCatSelect(){
+    return catSelect;
+}
+public void setCatSelect(List<Long> catSelect){
+    this.catSelect = catSelect;
+}
+
 }
