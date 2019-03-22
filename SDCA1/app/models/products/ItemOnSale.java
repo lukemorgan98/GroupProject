@@ -90,5 +90,4 @@ public List<Long> getCatSelect(){
 public void setCatSelect(List<Long> catSelect){
     this.catSelect = catSelect;
 }
-
 }

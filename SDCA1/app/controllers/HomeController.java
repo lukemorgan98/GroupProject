@@ -74,7 +74,7 @@ public Result addItemSubmit() {
         // Framework to send an error response to the user and display the additem page again. 
         // As we are passing in newItemForm, the form will be populated with the data that the 
         // user has already entered, saving them from having to enter it all over again.
-        return badRequest(addItem.render(newItemForm, User.getUserById(session().get("email"))));
+        return badRequest(addItem.render(newItemForm,User.getUserById(session().get("email"))));
     } else {
         // If no errors are found in the form data, we extract the data from the form.
         // Form objects have handy utility methods, such as the get() method we are using 
@@ -89,7 +89,6 @@ public Result addItemSubmit() {
         newItem.setCategories (newCats);
         // Now we call the ORM method save() on the model object, to have it saved in the
         // database as a line in the table item_on_sale.
-        
         if(newItem.getId()==null){
         newItem.save();
         }else{
@@ -142,7 +141,6 @@ public Result updateItem(Long id) {
 @Transactional
 @With(AuthAdmin.class)
 public Result deleteAdmin(String email) {
-
 
         Administrator u = (Administrator) User.getUserById(email);
         u.delete();
@@ -217,6 +215,11 @@ if (newUserForm.hasErrors()) {
 } else {
     Customer newUser = newUserForm.get();
     
+    System.out.println("Name: "+newUserForm.field("name").getValue().get());
+    System.out.println("Email: "+newUserForm.field("email").getValue().get());
+    System.out.println("Password: "+newUserForm.field("password").getValue().get());
+    System.out.println("Role: "+newUserForm.field("role").getValue().get());
+
     if(User.getUserById(newUser.getEmail())==null){
         newUser.save();
     }else{

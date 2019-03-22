@@ -11,6 +11,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import models.users.*;
+import models.users.UserPassword2;
 
 import views.html.*;
 
@@ -52,8 +53,8 @@ public class LoginController extends Controller {
      }
 
 public Result registerUser() {
-    Form<UserPassword2> userForm = formFactory.form(UserPassword2.class);
-    return ok(registerUser.render(userForm,User.getUserById(session().get("email"))));
+    Form<UserPassword2> regForm = formFactory.form(UserPassword2.class);
+    return ok(registerUser.render(regForm,User.getUserById(session().get("email"))));
 }
 
 public Result registerUserSubmit() {
@@ -73,7 +74,7 @@ public Result registerUserSubmit() {
         if(!newUser2.getPassword2().equals(newUser2.getPassword())){
             flash("error", "Passwords must match "); 
            
-            return badRequest(registerUser.render(newUserForm2,User.getUserById(session().get("email"))));
+            return redirect(controllers.routes.LoginController.registerUser());
             
         } 
     

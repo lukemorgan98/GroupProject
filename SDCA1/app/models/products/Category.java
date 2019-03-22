@@ -2,6 +2,7 @@ package models.products;
 
 import java.util.*;
 import javax.persistence.*;
+
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
@@ -77,5 +78,4 @@ public static boolean inCategory(Long category, Long item){
                        .eq("id", category)
                        .findList().size() > 0;
 }
-
 }

@@ -33,6 +33,20 @@ public class User extends Model {
    @Constraints.Required
    private String password;
 
+   public static final Finder<Long, User> find = new Finder<>(User.class);
+
+   public static User authenticate(String email, String password) {
+    return find.query().where().eq("email", email).eq("password", password).findUnique();
+ } 
+
+ public static User getUserById(String id){
+    if (id == null){
+        return null;
+    } else {
+        return find.query().where().eq("email", id).findUnique();
+    }
+}
+
    public User(){
 
    }
@@ -84,20 +98,6 @@ public class User extends Model {
         public void setDateOfBirth(Date dateOfBirth){
             this.dateOfBirth = dateOfBirth;
         }
-
-    public static final Finder<Long, User> find = new Finder<>(User.class);
-			    
-    public static User authenticate(String email, String password) {
-                return find.query().where().eq("email", email).eq("password", password).findUnique();
-             } 
-    
-    public static User getUserById(String id){
-        if (id == null){
-            return null;
-        } else {
-            return find.query().where().eq("email", id).findUnique();
-        }
-    }
 
 }
 

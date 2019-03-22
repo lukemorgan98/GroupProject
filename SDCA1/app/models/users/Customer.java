@@ -12,6 +12,7 @@ import play.data.validation.*;
 
 @Entity
 public class Customer extends User{
+    
     @Constraints.Required
     private String street1;
 
