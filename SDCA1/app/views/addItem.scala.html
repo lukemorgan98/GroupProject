@@ -21,7 +21,6 @@
              and this is provided by the method Category.options(), which we added to the Category
              class in the previous step. -->
             @inputText(itemForm("name"), '_label -> "Name", 'class -> "form-control")
-           
             <p><strong>Categories</strong></p>
             @for((value, name) <- products.Category.options){
                 <input type="checkbox" name="catSelect[]" value="@value"
@@ -32,14 +31,8 @@
                     }
                     /> @name </br>
             }
-           <p></p>
+           </p>
 
-            @select(
-                itemForm("category.id"),
-                options(products.Category.options),
-                '_label -> "Category", '_default -> "-- Choose a category --", 
-                '_showConstraints -> false, 'class -> "form-control"
-            )
             @inputText(itemForm("description"), '_label -> "Description", 'class -> "form-control")
             @inputText(itemForm("stock"), '_label -> "Stock", 'class -> "form-control")
             @inputText(itemForm("price"), '_label -> "Price", 'class -> "form-control")
