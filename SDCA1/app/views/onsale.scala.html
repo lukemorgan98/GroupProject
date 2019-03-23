@@ -34,6 +34,9 @@ user: models.users.User,env: play.api.Environment)
             <th>Description</th>
             <th>Stock</th>
             <th>Price</th>
+            @if((user != null) && ("customer".equals(user.getRole()))) {
+            <th>Buy</th>
+            }
         </tr>
         </thead>
         <tbody>
@@ -66,6 +69,9 @@ user: models.users.User,env: play.api.Environment)
 								<span class="glyphicon glyphicon-trash"></span>
 							</a>
                         </td>
+                  }
+                  @if((user != null) && ("customer".equals(user.getRole()))) {
+                        <td><a href="@routes.ShoppingCtrl.addToBasket(i.getId)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>
                   }
                </tr>
             }

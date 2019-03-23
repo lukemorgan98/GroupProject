@@ -33,15 +33,21 @@ insert into item_on_sale (id,name,description,stock,price) values ( 31,'Nanny St
 
 
 insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (1,1);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (2,2);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (3,3);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,4);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (5,5);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,6);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,7);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,8);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (6,9);
-insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (6,10);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (1,2);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (1,3);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (1,4);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (2,10);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (2,11);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (2,12);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (2,13);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (3,19);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (3,20);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (3,21);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (3,22);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,28);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,29);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,30);
+insert into CATEGORY_ITEM_ON_SALE(category_id,item_on_sale_id) values (4,31);
 
 
 
