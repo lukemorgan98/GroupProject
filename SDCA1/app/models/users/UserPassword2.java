@@ -8,9 +8,9 @@ public class UserPassword2 extends User {
 
     }
 
-    public UserPassword2(String email, String role, 
-            String name, String password1, String password2) {
-        super(email,role,name, password1);
+    public UserPassword2(String email, 
+            String name, String role,String password1, String password2) {
+        super(email, name,role, password1);
         this.password2 = password2;
     }
 

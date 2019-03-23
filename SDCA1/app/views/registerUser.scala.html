@@ -10,8 +10,8 @@
 		<div class="alert alert-success">
 			@flash.get("error")
 		</div>
-    }
-    
+	}
+
     <!-- Use a views.html.helpers package method to create the form (instead of html)-->
     <!-- Note the arguments that are being passed to the scala function form (they are
          essentially instructions for constructing an HTML form element)-->
@@ -27,11 +27,12 @@
         <!-- Note the @select function's argument options. This needs to be a map of ids-to-names
              and this is provided by the method Category.options(), which we added to the Category
              class in the previous step. -->
-            @inputText(userForm("email"), '_label -> "Email", 'class -> "form-control")
+            @inputText(userForm("email"), '_label -> "Email", 'class -> "form-control")      
+            @inputDate(userForm("dateOfBirth"), args = 'size -> 10, '_label -> "Date Of Birth", 'class -> "form-control")
             @inputText(userForm("name"), '_label -> "Name", 'class -> "form-control")
             @inputText(userForm("password"), '_label -> "Password", 'class -> "form-control")
             @inputText(userForm("password2"), '_label -> "Confirm Password", 'class -> "form-control")
-
+            
             @inputText(userForm("role").copy(value=Some("customer")), '_label -> "",'hidden -> "hidden")
             @inputText(userForm("email"), '_label -> "", 'hidden -> "hidden")
             

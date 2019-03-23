@@ -41,9 +41,9 @@ public class ItemOnSale extends Model {
 
     public static final Finder<Long, ItemOnSale> find = new Finder<>(ItemOnSale.class);
 			    
-public static final List<ItemOnSale> findAll() {
-   return ItemOnSale.find.all();
-}
+    public static final List<ItemOnSale> findAll() {
+        return ItemOnSale.find.all();
+    }
 
     // Accessor methods
     public Long getId() {
@@ -83,11 +83,10 @@ public List<Category> getCategories() {
 public void setCategories(List <Category> categories) {
     this.categories = categories;
 }
-
-public List<Long> getCatSelect(){
+public List<Long> getCatSelect() {
     return catSelect;
 }
-public void setCatSelect(List<Long> catSelect){
+public void setCatSelect(List<Long> catSelect) {
     this.catSelect = catSelect;
 }
 }
