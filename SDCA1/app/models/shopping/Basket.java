@@ -52,7 +52,7 @@ public class Basket extends Model {
         }
     }
     
-    public void removeItem(OrderItem item) {
+    public void removeItem(OrderItem item, ItemOnSale ios) {
 
         // Using an iterator ensures 'safe' removal of list objects
         // Removal of list items is unreliable as index can change if an item is added or removed elsewhere
@@ -64,11 +64,15 @@ public class Basket extends Model {
                 // If more than one of these items in the basket then decrement
                 if (i.getQuantity() > 1 ) {
                     i.decreaseQty();
+                    ios.incrementStock();
+                    ios.update();
                 }
                 // If only one left, remove this item from the basket (via the iterator)
                 else {
                     // delete object from db
                     i.delete();
+                    ios.incrementStock();
+                    ios.update();
                     // remove object from list
                     iter.remove();
                     break;

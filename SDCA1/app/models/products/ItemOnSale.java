@@ -89,4 +89,15 @@ public List<Long> getCatSelect() {
 public void setCatSelect(List<Long> catSelect) {
     this.catSelect = catSelect;
 }
+
+public void decrementStock(){
+    stock-=1;
+}
+
+public void incrementStock(){
+    stock+=1;
+}
+public void incrementStock(int q){
+    stock+=q;
+}
 }
