@@ -56,7 +56,8 @@ GET     /removeOne/:itemId          controllers.ShoppingCtrl.removeOne(itemId: L
 GET     /emptyBasket                controllers.ShoppingCtrl.emptyBasket()
 GET     /placeOrder                 controllers.ShoppingCtrl.placeOrder()
 GET     /viewOrder/:id              controllers.ShoppingCtrl.viewOrder(id: Long)
-
+GET     /cancelOrder                controllers.ShoppingCtrl.cancelOrder(id:Long)
+GET     /viewOrders                 controllers.ShoppingCtrl.viewOrders()
 
 
 

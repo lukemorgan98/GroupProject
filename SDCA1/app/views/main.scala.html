@@ -32,6 +32,10 @@
 				<li @if(pagename == "Customers") {class="active"}><a href="@routes.HomeController.usersCustomer()">View Customers</a></li>
 			}
 			
+			@if((user != null) && ("customer".equals(user.getRole()))){
+				<li @if(pagename == "Orders"){class="active"}><a href="@routes.ShoppingCtrl.viewOrders">View Orders</a></li>
+			}
+
 			<li @if(pagename == "Log In"){class="active"}>
 				@if(user != null){
 					<a href="@routes.LoginController.logout()">Log Out</a>>
