@@ -45,23 +45,22 @@ public class HomeController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
-    public Result onsale(Long cat) {
+    public Result onsale(Long cat, String filter) {
         List<ItemOnSale> itemList = null;
         List<Category> categoryList = Category.findAll();
 
         if(cat ==0){
-            itemList = ItemOnSale.findAll();
+            itemList = ItemOnSale.findAll(filter);
         }else {
-            itemList = Category.find.ref(cat).getItems();
+            itemList = ItemOnSale.findFilter(cat,filter);
         }
 
-        return ok(onsale.render(itemList, categoryList,User.getUserById(session().get("email")),e));
+        return ok(onsale.render(itemList, categoryList,cat,filter, User.getUserById(""),e));
      }
 
     public Result index() {
-        return ok(index.render(User.getUserById(session().get("email"))));
+        return redirect(routes.HomeController.onsale(0,""));
     }
-
     public Result about() {
         return ok(about.render(User.getUserById(session().get("email"))));
     }
@@ -98,7 +97,7 @@ public Result addItemSubmit() {
 
         String saveImageMessage = saveFile(newItem.getId(), image);
         flash("success", "Item " + newItem.getName() + " was added/updated" +saveImageMessage);
-        return redirect(controllers.routes.HomeController.onsale(0));
+        return redirect(controllers.routes.HomeController.onsale(0,""));
     }
 }
 
@@ -162,7 +161,7 @@ public Result deleteItem(Long id) {
     // Now write to the flash scope, as we did for the successful item creation.
     flash("success", "Item has been deleted.");
     // And redirect to the onsale page
-    return redirect(controllers.routes.HomeController.onsale(0));
+    return redirect(controllers.routes.HomeController.onsale(0,""));
 }
 @Security.Authenticated(Secured.class)
 public Result updateItem(Long id) {

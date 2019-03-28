@@ -41,8 +41,27 @@ public class ItemOnSale extends Model {
 
     public static final Finder<Long, ItemOnSale> find = new Finder<>(ItemOnSale.class);
 			    
-    public static final List<ItemOnSale> findAll() {
-        return ItemOnSale.find.all();
+    //public static final List<ItemOnSale> findAll() {
+     //   return ItemOnSale.find.all();
+   // }
+// Find all the Products in the database
+// filter product name
+    public static List<ItemOnSale> findAll(String filter){
+
+        return ItemOnSale.find.query().where()
+            .ilike("name", "%" + filter + "%")
+            .orderBy("name asc")
+            .findList();
+        
+    }
+    public static List<ItemOnSale> findFilter(Long catID, String filter){
+
+        return ItemOnSale.find.query().where()
+
+                        .eq("categories.id", catID)
+                        .ilike("name", "%" + filter + "%")
+                        .orderBy("name asc")
+                        .findList();
     }
 
     // Accessor methods

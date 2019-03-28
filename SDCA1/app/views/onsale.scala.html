@@ -1,5 +1,4 @@
-@(items: List[models.products.ItemOnSale],categories: List[models.products.Category],
-user: models.users.User,env: play.api.Environment)
+@(items: List[models.products.ItemOnSale],categories: List[models.products.Category], catId: Long, filter: String,user: models.users.User,env: play.api.Environment)
 @main("On Sale",user){
     <h1>On sale here</h1>
 
@@ -13,17 +12,25 @@ user: models.users.User,env: play.api.Environment)
     <div class="col-sm-3">
 		<h4>Categories</h4>
 	        <ul class="list-group">
-                    <a href = "@routes.HomeController.onsale(0)" class="list-group-item">All Categories</a>
+                    <a href = "@routes.HomeController.onsale(0,filter)" class="list-group-item">All Categories</a>
 		        @for(c<-categories) {
-			        <a href = "@routes.HomeController.onsale(c.getId())" class="list-group-item catheight">@c.getName
+			        <a href = "@routes.HomeController.onsale(c.getId(),filter)" class="list-group-item catheight">@c.getName
                         <span class="badge">@c.getItems.size</span> 
                     </a>
 			    }
             </ul>
     </div>
 
+
     <div class="col-sm-9">
         <h4>Note that all products are second hand, unless otherwise stated.</h4>
+
+        <div id="actions">
+            <form action="@routes.HomeController.onsale(catId)" method="GET">
+                <input type="search" id="searchbox" name="filter" value="@filter" placeholder="Filter by product name...">
+                <input type="submit" id="searchsubmit" value="Filter by name" class="btn-md btn-primary">
+            </form>
+        </div>
         <table class="table table-bordered table-hover table-condensed">
             <thead>
         <!-- The header row-->

@@ -5,7 +5,7 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 
-GET     /onsale                     controllers.HomeController.onsale(cat:Long?=0L)
+GET     /onsale                     controllers.HomeController.onsale(cat:Long?=0L, filter?="")
 GET     /about                      controllers.HomeController.about
 
 
