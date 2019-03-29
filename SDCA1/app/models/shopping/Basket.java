@@ -83,6 +83,13 @@ public class Basket extends Model {
     
     public void removeAllItems() {
         for(OrderItem i: this.basketItems) {
+            ItemOnSale ios = ItemOnSale.find.byId(i.getItem().getId());
+            if(ios.getId() == i.getItem().getId())
+            {
+                int quantity = i.getQuantity();
+                ios.incrementStock(quantity);
+                ios.update();
+            } 
             i.delete();
         }
         this.basketItems = null;

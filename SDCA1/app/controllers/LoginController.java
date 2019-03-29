@@ -62,36 +62,26 @@ public Result registerUser() {
 
 public Result registerUserSubmit() {
 
-    Form<User> newUserForm = formFactory.form(User.class).bindFromRequest();
-    Form<UserPassword2> newUserForm2 = formFactory.form(UserPassword2.class).bindFromRequest();
-
+    Form<Customer> newUserForm = formFactory.form(Customer.class).bindFromRequest();
     if (newUserForm.hasErrors()) {
-
-        return badRequest(registerUser.render(newUserForm2,User.getUserById(session().get("email"))));
+        
+        return badRequest(addCustomer.render(newUserForm,User.getUserById(session().get("email"))));
     } else {
-
-        User  newUser = newUserForm.get();
-        UserPassword2 newUser2 = newUserForm2.get();
-
-
-        if(!newUser2.getPassword2().equals(newUser2.getPassword())){
-            flash("error", "Passwords must match "); 
-            return redirect(controllers.routes.LoginController.registerUser());
-            
-        } 
-    
+        Customer newUser = newUserForm.get();
+        System.out.println("Name: "+newUserForm.field("name").getValue().get());
+        System.out.println("Email: "+newUserForm.field("email").getValue().get());
+        System.out.println("Password: "+newUserForm.field("password").getValue().get());
+        System.out.println("Role: "+newUserForm.field("role").getValue().get());
+        
         if(User.getUserById(newUser.getEmail())==null){
             newUser.save();
         }else{
             newUser.update();
         }
+        flash("success", "User " + newUser.getName() + " was added/updated.");
+        return redirect(controllers.routes.LoginController.login()); 
+        }
 
-    flash("success", "User " + newUser.getName() + " was registered.");
-
-    return redirect(controllers.routes.LoginController.login()); 
-    }
 }
-
-
 
 }

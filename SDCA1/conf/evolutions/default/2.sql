@@ -4,6 +4,7 @@
 
 delete from category;
 delete from item_on_sale;
+delete from category_item_on_sale;
 
 
 insert into category (id,name) values ( 1,'Jackets');
