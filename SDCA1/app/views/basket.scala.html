@@ -67,8 +67,16 @@
             </div>  
             <div class="col-md-6">
                 <p class="text-right">
-                    <a href="@routes.ShoppingCtrl.placeOrder()" class="btn btn-success btn-sm">
-                    <span class="glyphicon glyphicon-euro"></span> Place Order</a>
+                    <form action="/placeOrder" method="GET">
+                        <script
+                          src="https://checkout.stripe.com/checkout.js"
+                          class="stripe-button"
+                          data-key="pk_test_ruQSOBZEP6ZSbH2lQ4drfcvL009YiIpr0M"
+                          data-name="ALTernative Clothing"
+                          data-description="Payment"
+                          data-amount="shopping\Basket\getBasketTotal()">
+                        </script>
+                      </form>
                 </p>
             </div>  
         </div>
