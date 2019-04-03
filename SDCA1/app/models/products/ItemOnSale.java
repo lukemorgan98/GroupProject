@@ -44,6 +44,23 @@ public class ItemOnSale extends Model {
     public static final List<ItemOnSale> findAll() {
         return ItemOnSale.find.all();
     }
+    public static List<ItemOnSale> findAll(String filter){
+
+        return ItemOnSale.find.query().where()
+            .ilike("name", "%" + filter + "%")
+            .orderBy("name asc")
+            .findList();
+        
+    }
+    public static List<ItemOnSale> findFilter(Long catID, String filter){
+
+        return ItemOnSale.find.query().where()
+
+                        .eq("categories.id", catID)
+                        .ilike("name", "%" + filter + "%")
+                        .orderBy("name asc")
+                        .findList();
+    }
 
     // Accessor methods
     public Long getId() {
