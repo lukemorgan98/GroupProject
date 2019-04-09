@@ -13,10 +13,17 @@
 	    .midcol h1 { text-align: center; font-weight: bold; }
 	    .midcol h3 { text-align: center; color: steelblue; }
 	    .redtext { color: red; }
+		.banner{width: 100%; height: 500px}
+		
+		body{background-color: 	 #656e9cb2;}
+	
+
 	</style>
 	<title>ALT @pagename</title>
     </head>
     <body>
+
+		<img class="banner" src="@routes.Assets.versioned("images/clothesbanner.png")" alt="clotheheader">
 	<nav class="navbar navbar-inverse">
 	    <div class="container-fluid">
 		<div class="navbar-header">
@@ -24,7 +31,7 @@
 		</div>
 		<ul class="nav navbar-nav">
             <li @if(pagename == "Home") {class="active"}><a href="@routes.HomeController.index()">Home</a></li>
-		    <li @if(pagename == "Sale") {class="active"}><a href="@routes.HomeController.onsale()">Sale</a></li>
+		    <li @if(pagename == "Catalogue") {class="active"}><a href="@routes.HomeController.onsale()">Catalogue</a></li>
 			<li @if(pagename == "About") {class="active"}><a href="@routes.HomeController.about()">About us</a></li>
 			<li @if(pagename == "Register") {class="active"}><a href="@routes.LoginController.registerUser()">Register user</a></li>
 			@if((user != null) && ("admin".equals(user.getRole()))) {
@@ -47,7 +54,7 @@
 		</ul>
 	    </div>
 	</nav>
-
+	<div class="bg"></div>
 	<div class="container-fluid">
 	    <div class="row">
 		<!--<div class="col-sm-2">

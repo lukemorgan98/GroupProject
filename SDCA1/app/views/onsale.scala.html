@@ -1,13 +1,14 @@
 @(items: List[models.products.ItemOnSale],categories: List[models.products.Category], catId: Long, filter: String,user: models.users.User,env: play.api.Environment)
 @main("On Sale",user){
-    <h1>On sale here</h1>
+    <h1>Products</h1>
 
 
     @* Display successful new product message from flash, if it is set *@
 	@if(flash.containsKey("success")) {
 		<div class="alert alert-success">
 			@flash.get("success")
-		</div>
+        </div>
+        
 }
     <div class="col-sm-3">
 		<h4>Categories</h4>
@@ -22,12 +23,16 @@
     </div>
 
     <div class="col-sm-9">
-        <h4>Note that all products are second hand, unless otherwise stated.</h4>
+        
          <!-- Search Form-->
          <div id="actions">
             <form action="@routes.HomeController.onsale(catId)" method="GET">
+                    <div class="form-group">
                 <input type="search" id="searchbox" name="filter" value="@filter" placeholder="Filter by product name...">
-                <input type="submit" id="searchsubmit" value="Filter by name" class="btn-md btn-primary">
+            </div>
+                <div class="form-group">
+                        <input type="submit" value="Search" class="btn btn-primary">
+                    
             </form>
         </div>
         <table class="table table-bordered table-hover table-condensed">
