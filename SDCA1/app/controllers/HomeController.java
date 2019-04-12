@@ -132,7 +132,7 @@ public String saveFile(Long id, FilePart<File> uploaded) {
             if (file.renameTo(newFile)) {
                 try {
                     BufferedImage img = ImageIO.read(newFile); 
-                    BufferedImage scaledImg = Scalr.resize(img, 90);
+                    BufferedImage scaledImg = Scalr.resize(img, 234);
                     
                     if (ImageIO.write(scaledImg, extension, new File("public/images/productImages/", id + "thumb.jpg"))) {
                         return "/ file uploaded and thumbnail created.";
