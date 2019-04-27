@@ -10,20 +10,47 @@
 	    .footer { font-weight: bold; color: white; background-color: black; text-align: center; }
 	    .sidecol { font-weight: bold; background-color: steelblue; }
 		.sidecol h2 { font-weight: bold; }
-	    .midcol h1 { text-align: center; font-weight: bold; }
-	    .midcol h3 { text-align: center; color: steelblue; }
+	    .midcol h1 { text-align: center; letter-spacing: 0.15rem; font-weight: bold; font-family: Georgia, 'Times New Roman', Times, serif}
+	    .midcol h3 { text-align: center; color: steelblue; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif }
 	    .redtext { color: red; }
 		.banner{width: 100%; height: 500px}
-		
-		body{background-color: 	 #656e9cb2;}
-	
+		.carousel-item {
+  height: 65vh;
+  min-height: 350px;
 
+
+}
+		.contact-section {
+  padding: 5rem 0 0;
+}
+
+.contact-section .card {
+  border: 1;
+  border-bottom: 0.25rem solid steelblue;
+}
+
+.contact-section .card h4 {
+  font-size: 2rem;
+  font-family: 'Varela Round';
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+}
+
+.contact-section .card hr {
+  border-color:steelblue;
+  border-width: 0.25rem;
+  width: 3rem;
+}
+
+
+		body{background-color: 	 #656e9cb2;}
 	</style>
 	<title>ALT @pagename</title>
     </head>
     <body>
 
 		<img class="banner" src="@routes.Assets.versioned("images/clothesbanner.png")" alt="clotheheader">
+		
 	<nav class="navbar navbar-inverse">
 	    <div class="container-fluid">
 		<div class="navbar-header">
@@ -69,6 +96,9 @@
 			@content
 		    </div>
 		</div>
+
+
+		
 		<!--<div class="col-sm-2">
 		    <div class="well sidecol">
 			<h2>Events</h2>
